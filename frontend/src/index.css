@@ -1,0 +1,389 @@
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════════════════════
+   ROOT DESIGN TOKENS  —  Navy × Cyan Cybersecurity Theme
+   ══════════════════════════════════════════════════════════ */
+:root {
+  /* Background Ramp */
+  --bg-deep: #020c1b;
+  --bg-surface: #071428;
+  --bg-card: #0a1f44;
+
+  /* Accent Palette */
+  --cyan: #00E5FF;
+  --cyan-dim: rgba(0, 229, 255, 0.18);
+  --cyan-glow: rgba(0, 229, 255, 0.35);
+  --blue-light: #4FC3F7;
+  --blue-dim: rgba(79, 195, 247, 0.15);
+
+  /* Risk Score Colors */
+  --risk-safe: #00C853;
+  --risk-medium: #FF9800;
+  --risk-high: #EF4444;
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0BEC5;
+  --text-muted: rgba(176, 190, 197, 0.5);
+
+  /* Glass card */
+  --glass-bg: rgba(7, 20, 40, 0.82);
+  --glass-border: rgba(0, 229, 255, 0.12);
+}
+
+/* ── Base Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Multi-layer deep navy radial backdrop */
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(0, 100, 200, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 0%, rgba(0, 229, 255, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(10, 31, 68, 0.55) 0%, transparent 70%),
+    linear-gradient(180deg, #020c1b 0%, #071428 50%, #0a1f44 100%);
+  background-attachment: fixed;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020c1b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan);
+}
+
+/* ══════════════════════════════════════════════════════════
+   GLASS CARD
+   ══════════════════════════════════════════════════════════ */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(0, 229, 255, 0.05),
+    inset 0 1px 0 rgba(0, 229, 255, 0.07);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 229, 255, 0.28);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.8),
+    0 0 32px rgba(0, 229, 255, 0.12),
+    inset 0 1px 0 rgba(0, 229, 255, 0.12);
+}
+
+/* ══════════════════════════════════════════════════════════
+   NEON BUTTON  (Cyan)
+   ══════════════════════════════════════════════════════════ */
+.btn-neon {
+  background: linear-gradient(135deg, #0077b6 0%, #005f8a 60%, #003f5c 100%);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 0 18px rgba(0, 229, 255, 0.30),
+    0 4px 15px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.04em;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.18), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-neon:hover {
+  background: linear-gradient(135deg, #0096c7 0%, #0077b6 60%, #005f8a 100%);
+  border-color: rgba(0, 229, 255, 0.7);
+  box-shadow:
+    0 0 28px rgba(0, 229, 255, 0.55),
+    0 8px 25px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+.btn-neon:active {
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════
+   CYBER INPUT
+   ══════════════════════════════════════════════════════════ */
+.cyber-input {
+  background: rgba(2, 12, 27, 0.85);
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.cyber-input:focus {
+  border-color: rgba(0, 229, 255, 0.6);
+  box-shadow:
+    0 0 0 3px rgba(0, 229, 255, 0.09),
+    0 0 18px rgba(0, 229, 255, 0.14);
+}
+
+.cyber-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ══════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ══════════════════════════════════════════════════════════ */
+.font-cyber {
+  font-family: 'Orbitron', monospace;
+}
+
+/* Cyan text glow */
+.text-glow {
+  text-shadow:
+    0 0 16px rgba(0, 229, 255, 0.8),
+    0 0 40px rgba(0, 229, 255, 0.35);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SCANLINE OVERLAY (subtle CRT effect)
+   ══════════════════════════════════════════════════════════ */
+.scan-overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 229, 255, 0.012) 2px,
+      rgba(0, 229, 255, 0.012) 4px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   SIDEBAR ACTIVE STATE
+   ══════════════════════════════════════════════════════════ */
+.sidebar-active {
+  background: rgba(0, 229, 255, 0.10);
+  border-left: 3px solid var(--cyan);
+  color: var(--cyan);
+  box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.04);
+}
+
+/* ══════════════════════════════════════════════════════════
+   RISK SCORE COLORS  — Updated mapping
+   Safe  0–30  → Green   #00C853
+   Med   31–70 → Orange  #FF9800
+   High  71+   → Red     #D50000
+   ══════════════════════════════════════════════════════════ */
+.risk-low {
+  color: var(--risk-safe);
+}
+
+.risk-medium {
+  color: var(--risk-medium);
+}
+
+.risk-high {
+  color: var(--risk-high);
+}
+
+/* ══════════════════════════════════════════════════════════
+   PARTICLE CANVAS
+   ══════════════════════════════════════════════════════════ */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SHIELD FLOAT ANIMATION (Preserved)
+   ══════════════════════════════════════════════════════════ */
+.shield-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   GRADIENT BORDER
+   ══════════════════════════════════════════════════════════ */
+.border-gradient {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.border-gradient::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+      rgba(0, 229, 255, 0.35),
+      transparent,
+      rgba(79, 195, 247, 0.15));
+  z-index: -1;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LOADING SPINNER  (Cyan)
+   ══════════════════════════════════════════════════════════ */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(0, 229, 255, 0.15);
+  border-top-color: var(--cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   PASSWORD STRENGTH BARS
+   ══════════════════════════════════════════════════════════ */
+.strength-bar {
+  height: 4px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+/* ══════════════════════════════════════════════════════════
+   STAT COUNT ANIMATION
+   ══════════════════════════════════════════════════════════ */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-number {
+  animation: count-up 0.6s ease forwards;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CYAN GRID LINES BACKGROUND ACCENT
+   ══════════════════════════════════════════════════════════ */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   VERDICT BADGES  — Unified colors
+   ══════════════════════════════════════════════════════════ */
+.badge-safe {
+  background: rgba(0, 200, 83, 0.12);
+  border-color: rgba(0, 200, 83, 0.4);
+  color: #00C853;
+}
+
+.badge-medium {
+  background: rgba(255, 152, 0, 0.12);
+  border-color: rgba(255, 152, 0, 0.4);
+  color: #FF9800;
+}
+
+.badge-high {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #EF4444;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PULSE GLOW  — Cyan pulsing dot
+   ══════════════════════════════════════════════════════════ */
+@keyframes pulse-cyan {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(0, 229, 255, 0);
+  }
+}
+
+.pulse-cyan {
+  animation: pulse-cyan 2s ease-in-out infinite;
+}
