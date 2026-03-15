@@ -33,4 +33,4 @@ npm run dev
 
 ## Team
 
-Built by Lokendra Singh Shekhawat, Vanshika Tailor, Anu Kanwar, Ujjwal Vaishanv at [Arya Hack verses] 2025.
+Built by Lokendra Singh Shekhawat, Vanshika Tailor, Anu Kanwar, Ujjwal Vaishnav at [Arya Hack verses] 2025.
